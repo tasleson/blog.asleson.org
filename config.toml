@@ -5,6 +5,8 @@ theme = "whiteplain"
 
 copyright = "&copy; Copyright 2019 Tony Asleson"
 
+pygmentsCodeFences = true
+
 [params]
 showShareIcons = false
 

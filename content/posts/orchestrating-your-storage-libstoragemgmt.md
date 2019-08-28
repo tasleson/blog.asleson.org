@@ -55,7 +55,8 @@ As the admin is using NetApp they need to select the ontap plug-in by crafting a
 ### Identify the disk to replicate
 
 The administrator queries the array to identify the volume that the database is located on. To correctly identify which disk the admin first takes a look to see where the file system is mounted by looking for the UUID of the file system. Then they look in /dev/disk/by-id to identify the specific disk.
-```
+
+``` bash
 # lsblk -f | grep cd15fc03-749e-4d5b-9960-b3936ff25a62
 sdb ext4 cd15fc03-749e-4d5b-9960-b3936ff25a62 /mnt/db
 
@@ -64,10 +65,13 @@ lrwxrwxrwx. 1 9 Apr 30 12:24 scsi-360a98000696457714a346c4f5851304f -> ../../sdb
 lrwxrwxrwx. 1 9 Apr 30 12:24 wwn-0x60a98000696457714a346c4f5851304f -> ../../sdb
 
 ```
+
 We can now use the SCSI disk id to identify the disk on the array.
-```
+
+``` bash
 $ lsmcli list --type volumes -t" " | grep 60a98000696457714a346c4f5851304fidWqJ4lOXQ0O /vol/lsm_lun_container_lsm_test_aggr/tony_vol 60a98000696457714a346c4f5851304f 512 102400 OK 52428800 987654-32-0 e284bcf0-68e5-11e1-ad9b-000c29659817
 ```
+
 This command displays all the available volumes for the array. It outputs a number of different fields for each volume on the storage array. The fields are separated by a space ( using -t” “) with the fields defined as: ID, Name, vpd83, block size, #blocks, status, size bytes, system ID and pool ID. Definitions of each:
 
 *   ID – Array unique identifier for the Volume (virtual disk)
@@ -89,7 +93,7 @@ Before issuing the replicate command, quiesce the database. For MySQL this can b
 ### Replicate the disk
 
 To replicate the disk the user can issue the command (just outputting result ID for brevity):
-```
+``` bash
 $ lsmcli volume-replicate --vol idWqJ4lOXQ0O --rep-type CLONE --name "db_copy" -t” “ | awk '{print $1;}'
 idWqJ4qtb1f1
 ```
@@ -108,14 +112,17 @@ access groups. For other arrays you specify individual mappings from initiator
 to volume. To determine what mechanism the arrays supports we take a look at 
 the capabilities listed for the array.   To find out what capabilities an 
 array has, we need to find the system ID:
-```
+
+``` bash
 $ lsmcli list --type systems
 ID          | Name        | Status | Info
 -----------------------------------------
 987654-32-0 | netappdevel | OK
 ```
+
 Then issue the command to query the capabilities by passing the system id:
-```
+
+``` bash
 $ lsmcli --capabilities --sys 987654-32-0 | grep ACCESS_GROUP
 
 ACCESS_GROUP_GRANT:SUPPORTED
@@ -128,11 +135,13 @@ ACCESS_GROUP_DEL_INITIATOR:SUPPORTED
 VOLUMES_ACCESSIBLE_BY_ACCESS_GROUP:SUPPORTED
 ACCESS_GROUPS_GRANTED_TO_VOLUME:SUPPORTED
 ```
+
 The Ontap plug-in supports access groups. In this example, we know the initiator 
 we want to use has iSCSI IQN iqn.1994-05.com.domain:01.89bd03. We will look up 
 the access group that has the iSCSI IQN of interest in it.   List the access 
 groups, looking for the IQN of interest to backup too.
-```
+
+``` bash
 $ lsmcli list --type ACCESS_GROUPS
 
 ID                               | Name    | Initiator IDs                    | System ID
@@ -143,6 +152,7 @@ e11c718b99e26b1ca8b45f2df455c70b | fedora  | iqn.1994-05.com.domain:01.b7885f | 
 0a9a917c8cf4183f4646534f5597eb02 | Tony_AG | iqn.1994-05.com.domain:01.89bd03 | 987654-32-0
 
 ```
+
 The one we are interested in has ID 0a9a917c8cf4183f4646534f5597eb02. So at 
 this point we can grant access for the new volume by issuing:
 
@@ -154,7 +164,7 @@ If the IQN of interest is not available it can be added to an existing access
 group or added to a new access group. An example of adding to an existing access 
 group:  
 
-```
+``` bash
 
 $ lsmcli access-group-add --ag 0a9a917c8cf4183f4646534f5597eb02 --init iqn.1994-05.com.domain:01.89bd04
 
@@ -162,7 +172,7 @@ $ lsmcli access-group-add --ag 0a9a917c8cf4183f4646534f5597eb02 --init iqn.1994-
 
 To see what volumes are visible and accessible to an initiator we can issue:  
 
-```
+``` bash
 $ lsmcli access-group-volumes --ag 0a9a917c8cf4183f4646534f5597eb02 -t" " -H
 idWqJ4lOXQ0O /vol/lsm_lun_container_lsm_test_aggr/tony_vol 60a98000696457714a346c4f5851304f 512 102400 OK 50.00 MiB 987654-32-0 e284bcf0-68e5-11e1-ad9b-000c29659817
 idWqJ4qtb1f1 /vol/lsm_lun_container_lsm_test_aggr/db_copy 60a98000696457714a34717462316631 512 102400 OK 50.00 MiB 987654-32-0 e284bcf0-68e5-11e1-ad9b-000c29659817
