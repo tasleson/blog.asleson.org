@@ -1,0 +1,37 @@
+baseURL = "http://blog.asleson.org/"
+languageCode = "en-us"
+title = "blog.asleson.org"
+theme = "whiteplain"
+
+copyright = "&copy; Copyright 2019 Tony Asleson"
+
+[params]
+showShareIcons = false
+
+[permalinks]
+posts = "/:year/:month/:day/:title/"
+
+[params.author]
+github = "tasleson"
+flickr = "tasleson"
+twitter = "TonyAsleson"
+avatar = "/pictures/self.jpg"
+
+
+[[menu.main]]
+  name = "Tags"
+  identifier = "tags"
+  url = "/tags/"
+  weight = 2
+[[menu.main]]
+  name = "About"
+  identifier = "about"
+  url = "/about/"
+  weight = 3
+
+# Footer Menu
+[[menu.footer]]
+  name = "About"
+  weight = 1
+  identifier = "about"
+  url = "/about/"
