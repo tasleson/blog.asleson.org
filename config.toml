@@ -14,6 +14,8 @@ showShareIcons = false
 posts = "/:year/:month/:day/:title/"
 
 [params.author]
+name = "Tony Asleson"
+email = "tony@asleson.org"
 github = "tasleson"
 flickr = "tasleson"
 twitter = "TonyAsleson"
