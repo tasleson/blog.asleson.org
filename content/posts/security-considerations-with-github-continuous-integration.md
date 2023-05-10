@@ -26,7 +26,7 @@ tests require the node that is running the tests to run with root authority, so
 total box ownership is assured.  The test nodes are stripped down boxes with 
 nothing of value on them data wise, but just providing hardware and network 
 resources in which to execute arbitrary code is indeed valuable. Our solution 
-was to limit automated CI testing to only those we trust with white listing.  
+was to limit automated CI testing to only those we trust with an approved access list.  
 I don't envy Travis CI and all the security issues that have to consider.  
 They are basically providing a service which allows virtually anyone to 
 execute arbitrary code on their boxes.
