@@ -12,6 +12,7 @@ aliases:
 **NOTES:**
 * Updated 4/2/2015 to reflect new project links and updated command line syntax
 * Updated 5/20/2021 to reflect new IRC service
+* Updated 7/18/2023 removed IRC channel
 
 > Abstract This paper discusses some of the advanced features that can be used in modern storage subsystems to improve IT work flows. Being able to manage storage whether it be direct attached, storage area network (SAN) or networked file system is vital. The ability to manage different vendor solutions consistently using the same tools opens a new range of storage related solutions. LibStorageMgmt meets this need.
 
@@ -215,4 +216,3 @@ Mailing lists
 * [https://lists.fedorahosted.org/mailman/listinfo/libstoragemgmt-devel](https://lists.fedorahosted.org/mailman/listinfo/libstoragemgmt-devel "Development mailing list") 
 * [https://lists.fedorahosted.org/mailman/listinfo/libstoragemgmt-users](https://lists.fedorahosted.org/mailman/listinfo/libstoragemgmt-users "User mailing list") 
 
-IRC at #libStorageMgmt [https://www.oftc.net/](https://www.oftc.net/)
