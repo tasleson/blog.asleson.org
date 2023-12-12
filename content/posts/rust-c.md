@@ -9,8 +9,8 @@ The ability to write a C shared library in rust has been around for some time
 and there is quite a bit of information about the subject available. 
 Some examples:
 
-* [Exposing C and Rust APIs: some thoughts from librsvg](https://people.gnome.org/~federico/blog/exposing-c-and-rust-apis.html)
-* [Creating C/C++ APIs in Rust](https://karroffel.gitlab.io/post/2019-05-15-rust/)
+* [Exposing C and Rust APIs: some thoughts from librsvg](https://viruta.org/exposing-c-and-rust-apis-some-thoughts-from-librsvg.html)
+* ~~[Creating C/C++ APIs in Rust](https://karroffel.gitlab.io/post/2019-05-15-rust/)~~  (site removed?)
 * [Rust Out Your C by Carol (Nichols || Goulding) (youtube video)](https://www.youtube.com/watch?v=SKGVItFlK3w)
 * [Exporting a GObject C API from Rust code and using it from C, Python, JavaScript and others](https://coaxion.net/blog/2017/09/exporting-a-gobject-c-api-from-rust-code-and-using-it-from-c-python-javascript-and-others/)
 * [Rust Once, Run Everywhere](https://blog.rust-lang.org/2015/04/24/Rust-Once-Run-Everywhere.html)
