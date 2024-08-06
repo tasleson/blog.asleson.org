@@ -55,12 +55,12 @@ Is bcachefs really that small?  It's actually pretty good, but some features are
 
 | FS | RAID | Encryption | Thin provision    | De-dupe | Caching | Compression | Snapshots | Subvolumes | Send/Receive | Full checksum | Reflink      |
 |----|---|------------|-------------------|---------|---------|-------------|-----------|------------|--------------|---------------|--------------|
-|Bcachefs | Y | Y          | N                 | N | Y | Y | Y | Y | P | Y | Y            |
-| ZFS | Y | Y          | Y(sparse volumes) | N| Y|Y|Y|Y|Y|Y| Y            |
-|btrfs| Y | Y          |N|N|Y|Y|Y|Y|Y|Y|Y|
-|XFS | N | N          |N|N|N|N|N|N|N|N| Y (if newer) |
-|ext3/4| N | N          |N|N|N|N|N|N|N|N| N            |
-| Most non-COW | N | N          |N|N|N|N|N|N|N|N| Varies       |
+|Bcachefs | Y | Y          | N                 | N       | Y       | Y | Y | Y | P | Y | Y            |
+| ZFS | Y | Y          | Y(sparse volumes) | Y       | Y       |Y|Y|Y|Y|Y| Y            |
+|btrfs| Y | N          |N| N       | N       |Y|Y|Y|Y|Y|Y|
+|XFS | N | N          |N| N       | N       |N|N|N|N|N| Y (if newer) |
+|ext3/4| N | N          |N| N       | N       |N|N|N|N|N| N            |
+| Most non-COW | N | N          |N| N       | N       |N|N|N|N|N| Varies       |
 
 **P** = Planned
 
@@ -352,4 +352,7 @@ parity:     	2/3         	3         	[sdf sdg sdh]  	   138674176
 * Solution to multi-device FS and correct sequencing at boot which includes the option to mount in degraded mode if acceptable to end user
   * Need a good way to warn/alert a user when a FS is mounted degraded at boot
 * Change encrypt password entry to better integrate with systemd, e.g. `systemd-ask-password`
+
+##### Revisions
+* `8/6/2024` Corrected features table for btrfs, ZFS
 
