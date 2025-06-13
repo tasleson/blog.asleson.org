@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "blog.asleson.org"
 theme = "whiteplain"
 
-copyright = "&copy; Copyright 1999-2023 Tony Asleson"
+copyright = "&copy; Copyright 1999-2025 Tony Asleson"
 
 pygmentsCodeFences = true
 
@@ -15,7 +15,7 @@ posts = "/:year/:month/:day/:title/"
 
 [params.author]
 name = "Tony Asleson"
-email = "tony@asleson.org"
+email = "tony dot asleson@gmail.com"
 github = "tasleson"
 flickr = "tasleson"
 avatar = "/pictures/self.jpg"
