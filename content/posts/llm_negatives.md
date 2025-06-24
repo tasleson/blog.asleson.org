@@ -1,6 +1,6 @@
 ---
 title: "The Negative Consequences of LLMs"
-date: 2025-06-23T09:49:26-05:00
+date: 2025-06-24T09:49:26-05:00
 draft: false
 tags: ["LLMs", "AI Ethics", "software development", "machine learning"]
 categories: ["AI", "Software Engineering"]
