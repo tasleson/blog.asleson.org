@@ -2,16 +2,16 @@
 <div class="site-footer">
 
     {{ if eq .Type "posts"}}
-    <div class="comments">
-        <p>
-        <script src="https://utteranc.es/client.js"
-            repo="tasleson/blog-asleson-org"
-            issue-term="title"
-            theme="github-light"
-            crossorigin="anonymous" async>
-        </script>
-        </p>
-    </div>
+    <section id="comments" style="margin-top: 3em;"></section>
+
+    <script src="https://utteranc.es/client.js"
+        repo="tasleson/blog-asleson-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+    </section>
   {{ end }}
 
   <div class="copyright">{{ .Site.Copyright | safeHTML }}</div>
@@ -31,4 +31,3 @@
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
-{{ template "_internal/google_analytics.html" . }}
