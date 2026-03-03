@@ -1,7 +1,7 @@
 ---
 title: "Honey, I Shrunk the Model (Maybe): blk-archive vs AI Data"
 date: 2026-03-03
-draft: true
+draft: false
 description: "Exploring storage savings of blk-archive across AI-style datasets, compared against tar + gzip."
 tags: [Fedora, AI datasets, archival, storage]
 ---
