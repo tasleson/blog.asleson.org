@@ -259,9 +259,9 @@ After training completes, the resulting model is approximately 128 MiB, with fun
 
 This turned out to be another case where `blk-archive` performed poorly relative to simple gzip compression. That result suggests there are certain data layouts, particularly large, tokenized binary blobs like `train.bin`, where traditional compression is simply a better fit than deduplication.
 
-A likely factor here is entropy. Files like `train.bin` behave more like already-compressed data than like structured text. When the byte patterns are highly uniform and lack obvious repetition, there is not much for a deduplication engine to grab onto.
+A likely factor here is entropy. Files like `train.bin` behave more like already-compressed data than like structured text. When the byte patterns are highly random and lack obvious repetition, there is not much for a deduplication engine to grab onto.
 
-**Potential Improvement:** This suggests adding a lightweight entropy check during processing. If the data appears highly uniform, `blk-archive` could:
+**Potential Improvement:** This suggests adding a lightweight entropy check during processing. If the data appears highly random, `blk-archive` could:
 - Flag it as a poor candidate for deduplication
 - Adjust its chunking strategy accordingly
 - Skip compression for chunks before archiving
